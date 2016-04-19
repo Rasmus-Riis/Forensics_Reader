@@ -4,21 +4,12 @@ from datetime import datetime, timedelta
 import codecs
 import sys
 import sqlite3
+from guids import *
+
 def UserAssist(db, cursor, ntuser,software):
     softreg = Registry.Registry(software)
-
     folderDescription_dict = {}
-
-    folderDescription = softreg.open('Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions')
-
-    for subkey in folderDescription.subkeys():
-        guid = subkey.name().upper()
-        name = ''
-        for value in subkey.values():        
-            if value.name() == 'Name':
-                folderDescription_dict[guid] = value.value()
-                
-               # print value.name(), value.value(), guid
+    folderDescription_dict = FolderDescriptions(softreg, folderDescription_dict)              
 
     reg = Registry.Registry(ntuser)
     userassist = 'Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist'
@@ -64,14 +55,4 @@ def convert_wintime(windate):
         first_run = datetime(1601,1,1) + timedelta(microseconds=us)
         return first_run
 
-def guid_to_folder(data, folderDescription_dict):
-   
-       
-    string = data[:38]
-        
-    if string in folderDescription_dict:    
-        guid = data[:38]
-        data1 = "<" + folderDescription_dict[string] + '>\\' + data[39:]
-        return data1
-    else:
-        return data
+

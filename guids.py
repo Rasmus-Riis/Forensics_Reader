@@ -1,5 +1,33 @@
 import uuid
 
+def FolderDescriptions(softreg, folderDescription_dict):
+    
+    
+    folderDescription = softreg.open('Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions')
+    
+    for subkey in folderDescription.subkeys():
+        guid = subkey.name().upper()
+        name = ''
+        for value in subkey.values():        
+            if value.name() == 'RelativePath':
+                folderDescription_dict[guid] = value.value()
+                continue
+            elif value.name() == 'Name':
+                folderDescription_dict[guid] = value.value()
+    return folderDescription_dict
+
+def guid_to_folder(data, folderDescription_dict):
+   
+       
+    string = data[:38]
+        
+    if string in folderDescription_dict:    
+        guid = data[:38]
+        data1 = "FOLDERGUID_" + folderDescription_dict[string] + '\\' + data[39:]
+        return data1
+    else:
+        return data
+    
 def str_to_guid(str):
     guidstr = str[3] + str[2] + \
               str[1] + str[0] + \
@@ -11,6 +39,7 @@ def str_to_guid(str):
 def rootfolder(rootblock):
     # Folder names are defined in the Software Hive - Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\
     rootfolderguid = str_to_guid(rootblock[4:20])
+
     rootfolderguid = knownFolders(rootfolderguid)
     return rootfolderguid
 
@@ -115,3 +144,4 @@ def knownFolders(UUID):
             continue
 
     return UUID
+ 
