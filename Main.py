@@ -9,6 +9,7 @@ import sqlite3
 from Methods import *
 from makeTabs import *
 from userassist import *
+from RecentDocsRegistry import *
 
 
 app = QApplication(sys.argv)
@@ -35,6 +36,8 @@ def StartExam():  # Order:(db, cursor, hive, TableName, Source,  Key, Category, 
  
         ReadAllRegSubdir(db, cursor, filename + "\\NTUSER.DAT", "Info", r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU", "User",
                          "SubDirRec", "OpenSavePidlMRU") #OpenSavePidlMRU
+        #ReadAllRegSubdir(db, cursor, filename + "\\NTUSER.DAT", "Info", r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs", "User",
+         #               "SubDirRec", "RecentDocs") #RecentDocs
     if os.access(filename + "\\NTUSER.DAT", os.R_OK) and os.access(filename + "\\SOFTWARE", os.R_OK):
        cursor.execute(    '''CREATE TABLE UserAssistTable(Id INTEGER PRIMARY KEY, Name TEXT, focus TEXT, RunCount INTEGER, LastRun TEXT, Folderdata TEXT, Source TEXT)''')
        UserAssist(db, cursor, filename + "\\NTUSER.DAT", filename + "\\SOFTWARE")

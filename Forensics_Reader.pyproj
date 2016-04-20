@@ -34,7 +34,7 @@
     <Compile Include="MRUListExSort.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="OpenSavePidlMRU.py">
+    <Compile Include="RecentDocsRegistry.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="shellitemBlocks.py" />
