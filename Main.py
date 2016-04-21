@@ -1,7 +1,9 @@
 import sys
+
+sys.setrecursionlimit(10000000)
 import struct
 from GUI import Ui_Dialog  # here you need to correct the names
-from PyQt4.QtCore import * 
+from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 from PyQt4.QtGui import *
 import os
@@ -28,36 +30,40 @@ def StartExam():  # Order:(db, cursor, hive, TableName, Source,  Key, Category, 
     ui.msgLabel.setText("Processing.....  ")
     app.processEvents()
     cursor.execute(    '''CREATE TABLE Info(Id INTEGER PRIMARY KEY, Name TEXT, Value TEXT,Category TEXT, State TEXT, Keystr TEXT, RecString TEXT, KeyParent TEXT, KeyTimeStamp TEXT, MRUOrder INTEGER, MFT INTEGER, Source TEXT)''')
-    
-    if os.access(filename + "\\NTUSER.DAT", os.R_OK): 
-        ReadAllReg(db, cursor, filename + "\\NTUSER.DAT", "Info",
+    db.commit()
+    cursor.execute(
+        '''CREATE TABLE OpenSavePidlMRUTable(Id INTEGER PRIMARY KEY, ParentKey TEXT, Name TEXT, focus TEXT, RunCount INTEGER, LastRun TEXT, Folderdata TEXT, Source TEXT)''')
+    db.commit()
+    cursor.execute(
+        '''CREATE TABLE UserAssistTable(Id INTEGER PRIMARY KEY, Name TEXT, focus TEXT, RunCount INTEGER, LastRun TEXT, Folderdata TEXT, Source TEXT)''')
+    db.commit()
+
+    if os.access(filename + "/NTUSER.DAT", os.R_OK):
+        ReadAllReg(db, cursor, filename + "/NTUSER.DAT", "Info",
                        r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths", "User", "SubDir","Typed Paths")  # Typed Paths
-       # cursor.execute(    '''CREATE TABLE OpenSavePidlMRUTable(Id INTEGER PRIMARY KEY, ParentKey TEXT, Name TEXT, focus TEXT, RunCount INTEGER, LastRun TEXT, Folderdata TEXT, Source TEXT)''')
- 
-        ReadAllRegSubdir(db, cursor, filename + "\\NTUSER.DAT", "Info", r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU", "User",
+
+        ReadAllRegSubdir(db, cursor, filename + "/NTUSER.DAT", "Info",
+                         r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU", "User",
                          "SubDirRec", "OpenSavePidlMRU") #OpenSavePidlMRU
-        #ReadAllRegSubdir(db, cursor, filename + "\\NTUSER.DAT", "Info", r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs", "User",
+        # ReadAllRegSubdir(db, cursor, filename + "/NTUSER.DAT", "Info", r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs", "User",
          #               "SubDirRec", "RecentDocs") #RecentDocs
-    if os.access(filename + "\\NTUSER.DAT", os.R_OK) and os.access(filename + "\\SOFTWARE", os.R_OK):
-       cursor.execute(    '''CREATE TABLE UserAssistTable(Id INTEGER PRIMARY KEY, Name TEXT, focus TEXT, RunCount INTEGER, LastRun TEXT, Folderdata TEXT, Source TEXT)''')
-       UserAssist(db, cursor, filename + "\\NTUSER.DAT", filename + "\\SOFTWARE")
-    if os.access(filename + "\\SOFTWARE", os.R_OK): 
-        ReadAllReg(db, cursor, filename + "\\SOFTWARE", "Info", r"Microsoft\Windows NT\CurrentVersion", "OS", "SubDir", "Operating System Information")
-    if os.access(filename + "\\SYSTEM", os.R_OK): 
-        ReadAllReg(db, cursor, filename + "\\SYSTEM", "Info", "MountedDevices", "OS", "SubDir", "Mounted Devices")  # Mounted devices
-        ReadSingleReg(db, cursor, filename + "\\SYSTEM", "Info", "Select", "Current", "OS", "Single", "Operating System Information")  # CurrentControlSet
+    if os.access(filename + "/NTUSER.DAT", os.R_OK) and os.access(filename + "/SOFTWARE", os.R_OK):
+        UserAssist(db, cursor, filename + "/NTUSER.DAT", filename + "/SOFTWARE")
+    if os.access(filename + "/SOFTWARE", os.R_OK):
+        ReadAllReg(db, cursor, filename + "/SOFTWARE", "Info", r"Microsoft\Windows NT\CurrentVersion", "OS", "SubDir",
+                   "Operating System Information")
+    if os.access(filename + "/SYSTEM", os.R_OK):
+        ReadAllReg(db, cursor, filename + "/SYSTEM", "Info", "MountedDevices", "OS", "SubDir",
+                   "Mounted Devices")  # Mounted devices
+        ReadSingleReg(db, cursor, filename + "/SYSTEM", "Info", "Select", "Current", "OS", "Single",
+                      "Operating System Information")  # CurrentControlSet
     
 
     ui.msgLabel.setText("Done")
     app.processEvents()
     #Order: ID;Name;Value;Category;State;Keystr;RecString;KeyParent;KeyTimeStamp;MRUOrder;MRU
-  
-    makeTabs(cursor, ui.tabWidget,ui.tabWidget_RegistrySubTabs, ui) #makeTabs.py 
 
-
-
-def main():
-    db.commit()
+    makeTabs(cursor, ui.tabWidget, ui.tabWidget_RegistrySubTabs, ui)  # makeTabs.py
     db.close()
 if __name__ == "__main__":
    
