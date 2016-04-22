@@ -3,10 +3,10 @@ sys.setrecursionlimit(10000000)
 import struct
 from GUI import Ui_Dialog  # here you need to correct the names
 from PyQt4.QtCore import *
-import PyQt4.QtCore as QtCore
+# import PyQt4.QtCore as QtCore
 from PyQt4.QtGui import *
 import os
-import sqlite3
+# import sqlite3
 from Methods import *
 from makeTabs import *
 from userassist import *
