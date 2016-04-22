@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'GUI.ui'
+# Form implementation generated from reading ui file '/home/rasmus/Google Drive/Div/GUI.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created: Fri Apr 22 20:31:14 2016
+#      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -251,6 +252,37 @@ class Ui_Dialog(object):
         self.tableWidget_UserAssist.verticalHeader().setStretchLastSection(False)
         self.gridLayout_2.addWidget(self.tableWidget_UserAssist, 0, 0, 1, 1)
         self.tabWidget_RegistrySubTabs.addTab(self.tab_UserAssist, _fromUtf8(""))
+        self.tab_shellbags = QtGui.QWidget()
+        self.tab_shellbags.setObjectName(_fromUtf8("tab_shellbags"))
+        self.gridLayout_15 = QtGui.QGridLayout(self.tab_shellbags)
+        self.gridLayout_15.setObjectName(_fromUtf8("gridLayout_15"))
+        self.tableWidget_Shellbags = QtGui.QTableWidget(self.tab_shellbags)
+        self.tableWidget_Shellbags.setEnabled(True)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tableWidget_Shellbags.sizePolicy().hasHeightForWidth())
+        self.tableWidget_Shellbags.setSizePolicy(sizePolicy)
+        self.tableWidget_Shellbags.setAutoFillBackground(True)
+        self.tableWidget_Shellbags.setStyleSheet(_fromUtf8("QHeaderView::section {\n"
+                                                           "    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+                                                           "                                      stop:0 #616161, stop: 0.5 #505050,\n"
+                                                           "                                      stop: 0.6 #434343, stop:1 #656565);\n"
+                                                           "    color: white;\n"
+                                                           "    padding-left: 4px;\n"
+                                                           "    border: 1px solid #6c6c6c;\n"
+                                                           "    \n"
+                                                           "}"))
+        self.tableWidget_Shellbags.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.tableWidget_Shellbags.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.tableWidget_Shellbags.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
+        self.tableWidget_Shellbags.setColumnCount(6)
+        self.tableWidget_Shellbags.setObjectName(_fromUtf8("tableWidget_Shellbags"))
+        self.tableWidget_Shellbags.setRowCount(0)
+        self.tableWidget_Shellbags.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_Shellbags.verticalHeader().setStretchLastSection(False)
+        self.gridLayout_15.addWidget(self.tableWidget_Shellbags, 0, 0, 1, 1)
+        self.tabWidget_RegistrySubTabs.addTab(self.tab_shellbags, _fromUtf8(""))
         self.gridLayout_4.addWidget(self.tabWidget_RegistrySubTabs, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_Registry, _fromUtf8(""))
         self.tab_Jumplists = QtGui.QWidget()
@@ -433,7 +465,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(2)
-        self.tabWidget_RegistrySubTabs.setCurrentIndex(1)
+        self.tabWidget_RegistrySubTabs.setCurrentIndex(5)
         QtCore.QObject.connect(self.button_Exit, QtCore.SIGNAL(_fromUtf8("clicked()")), self.button_Exit.click)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -442,12 +474,13 @@ class Ui_Dialog(object):
         self.textEdit.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.5pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Welcome bla bla</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">This is the übertool.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">This page will be replaced by something cool</span></p></body></html>", None))
+                                                   "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt;\">Welcome bla bla</span></p>\n"
+                                                   "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8pt;\"><br /></p>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt;\">This is the übertool.</span></p>\n"
+                                                   "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8pt;\"><br /></p>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt;\">This page will be replaced by something cool</span></p></body></html>",
+                                         None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "Start", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_OS), _translate("Dialog", "Operating System Information", None))
         self.tabWidget_RegistrySubTabs.setTabText(self.tabWidget_RegistrySubTabs.indexOf(self.tab_MountedDevices), _translate("Dialog", "Mounted Devices", None))
@@ -455,6 +488,8 @@ class Ui_Dialog(object):
         self.tabWidget_RegistrySubTabs.setTabText(self.tabWidget_RegistrySubTabs.indexOf(self.tab_TypedPaths), _translate("Dialog", "Typed Paths", None))
         self.tabWidget_RegistrySubTabs.setTabText(self.tabWidget_RegistrySubTabs.indexOf(self.tab_RecentDocs), _translate("Dialog", "RecentDocs", None))
         self.tabWidget_RegistrySubTabs.setTabText(self.tabWidget_RegistrySubTabs.indexOf(self.tab_UserAssist), _translate("Dialog", "UserAssist", None))
+        self.tabWidget_RegistrySubTabs.setTabText(self.tabWidget_RegistrySubTabs.indexOf(self.tab_shellbags),
+                                                  _translate("Dialog", "Shellbags", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_Registry), _translate("Dialog", "Registry", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_Jumplists), _translate("Dialog", "Jumplists", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_Prefetch), _translate("Dialog", "Prefetch", None))
@@ -464,4 +499,3 @@ class Ui_Dialog(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_USB), _translate("Dialog", "USB", None))
         self.button_Start_Exam.setText(_translate("Dialog", "Start", None))
         self.button_Exit.setText(_translate("Dialog", "Exit", None))
-

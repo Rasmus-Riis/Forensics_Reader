@@ -32,6 +32,7 @@ from MRUListExSort import MRUListExSort
 from comDlg32 import openSavePidlMRU
 from userassist import *
 from guids import str_to_guid
+from pyfwsi import *
 
 def ReadSingleReg(db, cursor, Hive, TableName, Source, Key, Category, stateStr, KeyStr):
     reg = Registry.Registry(Hive)
@@ -141,9 +142,9 @@ def rec(key, cursor, TableName, Category, stateStr, KeyStr,Source):
         for value in [v for v in subkey.values()]:
             if value.name() != "MRUListEx":
                 ComDlg = openSavePidlMRU(value, subkeyName)
-                
+
                 MFT = ComDlg[1]
-                
+
                 filePath = ComDlg[0]
                 indexnum = 0
 
@@ -158,8 +159,6 @@ def rec(key, cursor, TableName, Category, stateStr, KeyStr,Source):
                 cursor.execute(
                     '''INSERT INTO %s  (Name, Value, Category, State, KeyStr, RecString, KeyParent, MRUOrder, MFT,Source,KeyTimeStamp) VALUES(?,?,?,?,?,?,?,?,?,?,?)''' % TableName,
                     [value.name(), filePath, Category, stateStr, KeyStr, "Key",subkey.name(),indexnum, MFT,Source,''])
-    
-
 
 
 def ReadAllRegSubdir(db, cursor, Hive, TableName, Source, Category, stateStr, KeyStr):

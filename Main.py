@@ -12,7 +12,7 @@ from Methods import *
 from makeTabs import *
 from userassist import *
 from RecentDocsRegistry import *
-
+import shellbags
 
 app = QApplication(sys.argv)
 window = QDialog()
@@ -38,7 +38,9 @@ def StartExam():  # Order:(db, cursor, hive, TableName, Source,  Key, Category, 
         '''CREATE TABLE UserAssistTable(Id INTEGER PRIMARY KEY, Name TEXT, focus TEXT, RunCount INTEGER, LastRun TEXT, Folderdata TEXT, Source TEXT)''')
     db.commit()
 
+
     if os.access(filename + "/NTUSER.DAT", os.R_OK):
+        shellbags.startShellbags("/home/rasmus/Samples/NTUSER.DAT", db, cursor)
         ReadAllReg(db, cursor, filename + "/NTUSER.DAT", "Info",
                        r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths", "User", "SubDir","Typed Paths")  # Typed Paths
 

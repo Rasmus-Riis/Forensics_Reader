@@ -81,23 +81,44 @@ def makeTabs(cursor, tabWidget,tabWidget_RegistrySubTabs, ui ):
         ui.tableWidget_UserAssist.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
  
     #End tab_UserAssist   tableResult->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-    #Teb RecentDocs
-    rowcount = cursor.execute('''SELECT COUNT(*) FROM Info WHERE KeyStr like "%RecentDocs%"''').fetchone()[0]
-    if rowcount > 0:
-        ui.tabWidget.addTab(ui.tab_Registry, "Registry")
-        ui.tabWidget_RegistrySubTabs.addTab(ui.tab_RecentDocs,"RecentDocs")
-        
-        ui.tableWidget_RecentDocs.setRowCount(rowcount)
-        ui.tableWidget_RecentDocs.setHorizontalHeaderLabels(QString("File extension;Key name;Value;Source").split(";"))
-        cursor.execute('''SELECT KeyParent, Name, Value, Source FROM %s WHERE Keystr IS "RecentDocs" ORDER BY KeyParent,MRUOrder''' % "Info")
-        for row1, form in enumerate(cursor):
-            for column, item in enumerate(form):
-                print item   
-                if isinstance(item, str):
-                    try:
-                        ui.tableWidget_RecentDocs.setItem(row1, column, QTableWidgetItem(str(item).decode('utf-16')))
-                    except:
-                        ui.tableWidget_RecentDocs.setItem(row1, column, QTableWidgetItem(str(item)))  
-                else:
-                    ui.tableWidget_RecentDocs.setItem(row1, column, QTableWidgetItem(str(item)))  
-        ui.tableWidget_RecentDocs.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+        # Teb RecentDocs
+        rowcount = cursor.execute('''SELECT COUNT(*) FROM Info WHERE KeyStr like "%RecentDocs%"''').fetchone()[0]
+        if rowcount > 0:
+            ui.tabWidget.addTab(ui.tab_Registry, "Registry")
+            ui.tabWidget_RegistrySubTabs.addTab(ui.tab_RecentDocs, "RecentDocs")
+
+            ui.tableWidget_RecentDocs.setRowCount(rowcount)
+            ui.tableWidget_RecentDocs.setHorizontalHeaderLabels(
+                QString("File extension;Key name;Value;Source").split(";"))
+            cursor.execute(
+                '''SELECT KeyParent, Name, Value, Source FROM %s WHERE Keystr IS "RecentDocs" ORDER BY KeyParent,MRUOrder''' % "Info")
+            for row1, form in enumerate(cursor):
+                for column, item in enumerate(form):
+                    print item
+                    if isinstance(item, str):
+                        try:
+                            ui.tableWidget_RecentDocs.setItem(row1, column,
+                                                              QTableWidgetItem(str(item).decode('utf-16')))
+                        except:
+                            ui.tableWidget_RecentDocs.setItem(row1, column, QTableWidgetItem(str(item)))
+                    else:
+                        ui.tableWidget_RecentDocs.setItem(row1, column, QTableWidgetItem(str(item)))
+            ui.tableWidget_RecentDocs.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+            # end recebtdocs
+            # Tab shellbags
+        rowcount = cursor.execute('''SELECT COUNT(*) FROM ShellbagsTable''').fetchone()[0]
+        if rowcount > 0:
+            ui.tabWidget.addTab(ui.tab_Registry, "Registry")
+            ui.tabWidget_RegistrySubTabs.addTab(ui.tab_shellbags, "Shellbags")
+            ui.tableWidget_Shellbags.setRowCount(rowcount)
+            ui.tableWidget_Shellbags.setHorizontalHeaderLabels(
+                QString("Path;Modified;Accessed;Created;Source").split(";"))
+            cursor.execute('''SELECT  Path, Modified, Accessed, Created, Source FROM ShellbagsTable''')
+
+            for row1, form in enumerate(cursor):
+                for column, item in enumerate(form):
+                    # if form[5] == "Mounted Devices":
+                    ui.tableWidget_Shellbags.setItem(row1, column, QTableWidgetItem(str(item)))
+                ui.tableWidget_Shellbags.horizontalHeader().setResizeMode(QHeaderView.ResizeToContents)
+
+                # end shellbags
