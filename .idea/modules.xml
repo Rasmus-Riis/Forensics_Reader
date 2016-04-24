@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Forensics Reader.iml" filepath="$PROJECT_DIR$/.idea/Forensics Reader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../Downloads/shellbags-master/.idea/shellbags-master.iml" filepath="$PROJECT_DIR$/../../Downloads/shellbags-master/.idea/shellbags-master.iml" />
     </modules>
   </component>
 </project>
