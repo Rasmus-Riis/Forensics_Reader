@@ -1,7 +1,7 @@
 import sys
 sys.setrecursionlimit(10000000)
 import struct
-from GUI import Ui_Dialog  # here you need to correct the names
+from GUI import Ui_Dialog
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import os
