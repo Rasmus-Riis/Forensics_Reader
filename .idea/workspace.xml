@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec1bea15-b4c1-4853-946c-e9d225916abd" name="Default" comment="testing">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shellbags.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Forensics Reader.iml" afterPath="$PROJECT_DIR$/.idea/Forensics Reader.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Forensics Reader.iws" />
@@ -553,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461351776509</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="testing">
+      <created>1461504192755</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1461504192755</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
